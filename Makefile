@@ -5,81 +5,80 @@
 #                                                     +:+ +:+         +:+      #
 #    By: karisti- <karisti-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/11/20 13:16:39 by karisti-          #+#    #+#              #
-#    Updated: 2021/09/05 13:25:23 by karisti-         ###   ########.fr        #
+#    Created: 2021/09/13 19:37:51 by karisti-          #+#    #+#              #
+#    Updated: 2021/09/13 20:17:00 by karisti-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 		=	push_swap
-LIBFT_A 	=	libft.a
+# Project compilation files and directories
 
-COMPILE 	=	gcc -Wall -Werror -Wextra $(PUSH_SWAP_H) $(LIBFT_H) -c -o 
+NAME			= 	minitalk
 
-PUSH_SWAP_H =	-I includes/
-LIBFT_H 	= 	-I srcs/libft/includes
+C_CLIENT		=	client.c \
+					libft.c \
 
-OBJ_DIR 	=	obj/
-SRC_DIR 	=	srcs/
-LIB_DIR 	=	srcs/libft/
+C_SERVER		=	server.c \
+					libft.c \
 
-CFILE		=	push_swap.c \
-				checks.c \
-				parser.c \
-				op_swap.c \
-				op_push.c \
-				op_rotate.c \
-				op_reverse_rotate.c \
-				sort.c \
-				helpers_stacks.c \
-				helpers_sort.c
+SRCSFD			=	srcs/
+OBJSFD			=	objs/
+HDR_INC			=	-I./includes
 
-CFIND 		=	$(CFILE:%=$(SRC_DIR)%)
+OBJS_CLIENT 	=	$(addprefix $(OBJSFD), $(C_CLIENT:.c=.o))
+OBJS_SERVER 	=	$(addprefix $(OBJSFD), $(C_SERVER:.c=.o))
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-OFILE 		=	$(CFILE:%.c=%.o)
+# Compilation
+COMP	=	gcc
+CFLAGS	=	-Wall -Wextra -Werror
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-OBJ 		=	$(addprefix $(OBJ_DIR), $(OFILE))
+# Colors
+RED 			= \033[0;31m
+GREEN 			= \033[0;32m
+NONE 			= \033[0m
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-all: $(NAME)
+all: project $(NAME)
+	@echo "... project ready"
 
-$(OBJ_DIR):
-		@mkdir -p $(OBJ_DIR)
-		@echo Create: push_swap Object directory
+project:
+	@echo "Checking project ..."
 
-$(NAME): $(OBJ_DIR) $(OBJ)
-		@echo LIBFT START
-		@make bonus -C $(LIB_DIR)
-		@echo Copying $(LIBFT_A) to root.
-		@cp $(LIB_DIR)$(LIBFT_A) .
-		@mv $(LIBFT_A) $(NAME)
-		@ar rc $(NAME) $(addprefix $(OBJ_DIR), $(OFILE))
-		@ranlib $(NAME)
-		@echo Merged: $(NAME) with $(LIBFT_A)
-		@echo PUSH_SWAP COMPLETE
+projectb:
+	@echo "Checking project bonus ..."
 
-$(OBJ): $(CFIND)
-		@$(MAKE) $(OFILE)
+$(LIBFT):
+	@make -C libft bonus
 
-$(OFILE):
-		@echo Create: $(@:obj/%=%)
-		@$(COMPILE) $(OBJ_DIR)$@ $(SRC_DIR)$(@:%.o=%.c)
+$(OBJSFD):
+	@mkdir $@
+	@echo "\t[ $(GREEN)✔$(NONE) ] $@ directory"
+
+$(OBJSFD)%.o: $(SRCSFD)%.c
+	@$(COMP) $(CFLAGS) $(HDR_INC) -o $@ -c $<
+	@echo "\t[ $(GREEN)✔$(NONE) ] $@ object"
+
+$(NAME): $(OBJSFD) $(OBJS_SERVER) $(OBJS_CLIENT)
+	@$(COMP) $(CFLAGS) $(OBJS_SERVER) -o server
+	@echo "\t[ $(GREEN)✔$(NONE) ] server executable"
+	@$(COMP) $(CFLAGS) $(OBJS_CLIENT) -o client
+	@echo "\t[ $(GREEN)✔$(NONE) ] client executable"
+
+bonus: projectb $(NAME)
+	@echo "... bonus project ready"
 
 clean:
-		@/bin/rm -rf $(OBJ_DIR)
-		@make -C $(LIB_DIR) clean
-		@echo Cleaned ft_printf object files
+	@echo "Cleaning project ..."
+	@/bin/rm -rf $(OBJSFD)
+	@echo "\t[ $(RED)✗$(NONE) ] Objects directory"
 
 fclean: clean
-		@/bin/rm -f $(NAME)
-		@make -C $(LIB_DIR) fclean
-		@echo Cleaned $(NAME)
+	@/bin/rm -f server
+	@echo "\t[ $(RED)✗$(NONE) ] server executable"
+	@/bin/rm -f client
+	@echo "\t[ $(RED)✗$(NONE) ] client executable"
 
 re: fclean all
 
-# FOR TESTNGS
-retest: cleantest
-	gcc -g -Wall -Werror -Wextra srcs/*.c srcs/libft/srcs/*.c srcs/libft/srcs/bonus/*.c -I includes/ -I srcs/libft/includes -o test && ./test 2 3 5 12 10 6 9 7 4 1 8 11
-
-cleantest:
-	@/bin/rm -rf test test.dSYM
-
-.PHONY: all clean flcean re
+.PHONY: project all clean fclean re
