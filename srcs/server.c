@@ -6,7 +6,7 @@
 /*   By: karisti- <karisti-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 19:36:16 by karisti-          #+#    #+#             */
-/*   Updated: 2021/09/13 21:27:53 by karisti-         ###   ########.fr       */
+/*   Updated: 2021/09/13 23:30:14 by karisti-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(void)
 
 	// MAGIA SIGNALS
 	signal(SIGUSR1, handle_message);
-	pause();
+	while (1)
+		pause();
 	return (0);
 }
