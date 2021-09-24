@@ -6,7 +6,7 @@
 /*   By: karisti- <karisti-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 19:36:20 by karisti-          #+#    #+#             */
-/*   Updated: 2021/09/13 21:28:00 by karisti-         ###   ########.fr       */
+/*   Updated: 2021/09/17 13:56:47 by karisti-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@
 # include <stdlib.h>
 # include <signal.h>
 
-///////////////////////////////
 # include <stdio.h>
-///////////////////////////////
 
 void	exit_error(char *str);
-int		strisnum(char *str);
 int		ft_atoi(const char *str);
-void	ft_putnbr_fd(int n, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	handle_message();
+void	ft_putnbr(int n);
+void	ft_putstr(char *s);
+int		ft_strisnum(char *str);
+void	send_message(pid_t pid, char *message);
+void	handle_message(int sig);
+void	send_signal(pid_t pid, int sig);
 
 #endif

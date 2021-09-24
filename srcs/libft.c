@@ -6,7 +6,7 @@
 /*   By: karisti- <karisti-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 20:03:51 by karisti-          #+#    #+#             */
-/*   Updated: 2021/09/13 21:03:50 by karisti-         ###   ########.fr       */
+/*   Updated: 2021/09/17 14:00:13 by karisti-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	exit_error(char *str)
 {
-	ft_putstr_fd(str, 1);
+	ft_putstr(str);
 	exit(1);
 }
 
-int	strisnum(char *str)
+int	ft_strisnum(char *str)
 {
 	while (*str)
 	{
@@ -55,25 +55,7 @@ int	ft_atoi(const char *str)
 	return (num * signo);
 }
 
-void	ft_putnbr_fd(int n, int fd)
-{
-	unsigned int	nb_1;
-
-	if (n < 0)
-	{
-		write(fd, "-", 1);
-		n = n * -1;
-	}
-	nb_1 = n;
-	if (nb_1 >= 10)
-	{
-		ft_putnbr_fd(nb_1 / 10, fd);
-	}
-	nb_1 = nb_1 % 10 + '0';
-	write(fd, &nb_1, 1);
-}
-
-void	ft_putstr_fd(char *s, int fd)
+void	ft_putstr(char *s)
 {
 	int	i;
 
@@ -82,8 +64,26 @@ void	ft_putstr_fd(char *s, int fd)
 	{
 		while (s[i] != '\0')
 		{
-			write(fd, &s[i], 1);
+			write(1, &s[i], 1);
 			i++;
 		}
 	}
+}
+
+void	ft_putnbr(int n)
+{
+	unsigned int	nb_1;
+
+	if (n < 0)
+	{
+		ft_putstr("-");
+		n = n * -1;
+	}
+	nb_1 = n;
+	if (nb_1 >= 10)
+	{
+		ft_putnbr(nb_1 / 10);
+	}
+	nb_1 = nb_1 % 10 + '0';
+	write(1, &nb_1, 1);
 }

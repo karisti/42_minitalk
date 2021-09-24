@@ -1,18 +1,6 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: karisti- <karisti-@student.42madrid.com    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/09/13 19:37:51 by karisti-          #+#    #+#              #
-#    Updated: 2021/09/13 20:17:00 by karisti-         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 # Project compilation files and directories
 
-NAME			= 	minitalk
+NAME			= 	server
 
 C_CLIENT		=	client.c \
 					libft.c \
@@ -48,15 +36,12 @@ project:
 projectb:
 	@echo "Checking project bonus ..."
 
-$(LIBFT):
-	@make -C libft bonus
-
 $(OBJSFD):
 	@mkdir $@
 	@echo "\t[ $(GREEN)✔$(NONE) ] $@ directory"
 
 $(OBJSFD)%.o: $(SRCSFD)%.c
-	@$(COMP) $(CFLAGS) $(HDR_INC) -o $@ -c $<
+	@$(COMP) $(CFLAGS) $(HDR_INC) -c $< -o $@
 	@echo "\t[ $(GREEN)✔$(NONE) ] $@ object"
 
 $(NAME): $(OBJSFD) $(OBJS_SERVER) $(OBJS_CLIENT)
