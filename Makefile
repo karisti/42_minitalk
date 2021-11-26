@@ -1,30 +1,43 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: karisti- <karisti-@student.42madrid.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/11/26 17:27:14 by karisti-          #+#    #+#              #
+#    Updated: 2021/11/26 17:28:41 by karisti-         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 # Project compilation files and directories
+NAME			=	server
 
-NAME			= 	server
+C_CLIENT		=	client.c	\
+					libft.c		\
 
-C_CLIENT		=	client.c \
-					libft.c \
-
-C_SERVER		=	server.c \
-					libft.c \
+C_SERVER		=	server.c	\
+					libft.c		\
 
 SRCSFD			=	srcs/
 OBJSFD			=	objs/
 HDR_INC			=	-I./includes
 
-OBJS_CLIENT 	=	$(addprefix $(OBJSFD), $(C_CLIENT:.c=.o))
-OBJS_SERVER 	=	$(addprefix $(OBJSFD), $(C_SERVER:.c=.o))
+OBJS_CLIENT		=	$(addprefix $(OBJSFD), $(C_CLIENT:.c=.o))
+OBJS_SERVER		=	$(addprefix $(OBJSFD), $(C_SERVER:.c=.o))
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Compilation
-COMP	=	gcc
-CFLAGS	=	-Wall -Wextra -Werror
+COMP			=	gcc
+CFLAGS			=	-Wall -Wextra -Werror
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Colors
-RED 			= \033[0;31m
-GREEN 			= \033[0;32m
-NONE 			= \033[0m
+RED 			=	\033[0;31m
+GREEN 			=	\033[0;32m
+NONE 			=	\033[0m
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 all: project $(NAME)

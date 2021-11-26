@@ -6,7 +6,7 @@
 /*   By: karisti- <karisti-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 19:36:20 by karisti-          #+#    #+#             */
-/*   Updated: 2021/09/17 13:56:47 by karisti-         ###   ########.fr       */
+/*   Updated: 2021/11/26 17:26:28 by karisti-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <signal.h>
-
 # include <stdio.h>
 
 void	exit_error(char *str);
