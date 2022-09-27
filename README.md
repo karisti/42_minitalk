@@ -17,7 +17,7 @@ This project consists of creating a communication program in the form of a clien
 ## Usage
 1. `make`
 2. Run `./server` on a shell and leave it running
-3. Run `./client <SERVER_PID> <YOUR MESSAGE>` on another shell
+3. Run `./client <SERVER_PID> <YOUR_MESSAGE>` on another shell
 
 ## Resources
 - [How signals work (es)](http://profesores.elo.utfsm.cl/~agv/elo330/2s08/lectures/signals.html "How signals work (es)")
