@@ -5,12 +5,6 @@
 ## Description
 This project consists of creating a communication program in the form of a client and a server. The communication between client and server has to be done only using UNIX signals (SIGUSR1 and SIGUSR2). The server can receive strings from several clients in a row without needing to restart.
 
-## Lessons
-- UNIX Signals
-- Processes
-- Bitwise Operators
-- Pause, sleep, exit
-
 ## Prerequisites
 - Nothing needed
 
@@ -18,6 +12,12 @@ This project consists of creating a communication program in the form of a clien
 1. `make`
 2. Run `./server` on a shell and leave it running
 3. Run `./client <SERVER_PID> <YOUR_MESSAGE>` on another shell
+
+## Lessons
+- UNIX Signals
+- Processes
+- Bitwise Operators
+- Pause, sleep, exit
 
 ## Resources
 - [How signals work (es)](http://profesores.elo.utfsm.cl/~agv/elo330/2s08/lectures/signals.html "How signals work (es)")
